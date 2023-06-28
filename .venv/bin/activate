@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/rcx/Documents/codes/Projects/django/.venv"
+VIRTUAL_ENV="/home/applify/Documents/codes/Django Projects/learnDjango/.venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

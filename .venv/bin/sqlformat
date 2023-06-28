@@ -1,4 +1,6 @@
-#!/home/rcx/Documents/codes/Projects/django/.venv/bin/python
+#!/bin/sh
+'''exec' "/home/applify/Documents/codes/Django Projects/learnDjango/.venv/bin/python3" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys
