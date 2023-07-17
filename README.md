@@ -1,7 +1,16 @@
 # learnDjango
 
-add your .cnf file for adding <b>mysql</b>as <b>database</b> 
-& <b>update</b> the <b>settings.py</b> with:
+1) add your .cnf file for adding <b>mysql</b>as <b>database</b>
+2) cnf file format :
+
+<code>[client]
+database = DB_NAME
+host = localhost
+user = DB_USER
+password = DB_PASSWORD
+default-character-set = utf8</code>
+
+3) <b>update</b> the <b>settings.py</b> with <b>path</b> to .cnf file:
 
 <code>DATABASES = {
     'default': {
@@ -12,13 +21,5 @@ add your .cnf file for adding <b>mysql</b>as <b>database</b>
     }
 }</code>
 
-& update the <b>path</b> to the /path/my.cnf file
 
-cnf file format :
-
-<code>[client]
-database = DB_NAME
-host = localhost
-user = DB_USER
-password = DB_PASSWORD
-default-character-set = utf8</code>
+<h3>for security purposes we need .cnf file not to directly hardcode the personal info.</h3>
