@@ -12,7 +12,7 @@ add your .cnf file for adding <b>mysql</b>as <b>database</b>
     }
 }</code>
 
-& update the <b>path</b> to the .cnf file
+& update the <b>path</b> to the /path/my.cnf file
 
 cnf file format :
 
