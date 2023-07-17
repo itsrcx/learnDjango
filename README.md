@@ -1,7 +1,7 @@
 # learnDjango
 
 add your .cnf file for adding <b>mysql</b>as <b>database</b> 
-& <h3>update</h3> the <h3>settings.py</h3> with:
+& <b>update</b> the <b>settings.py</b> with:
 
 <code>DATABASES = {
     'default': {
