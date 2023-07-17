@@ -10,7 +10,7 @@ add your .cnf file for adding <b>mysql</b>as <b>database</b>
             'read_default_file': '/path/to/my.cnf',
         },
     }
-}</code>
+}</code><br>
 & update the <b>path</b> to the .cnf file
 
 cnf file format :
