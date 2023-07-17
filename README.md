@@ -1,6 +1,6 @@
 # learnDjango
 
-1) add your .cnf file for adding <b>mysql</b>as <b>database</b>
+1) add your .cnf file for adding <b>mysql</b> as <b>database</b>
 2) cnf file format :
 
 <code>[client]
