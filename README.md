@@ -14,6 +14,7 @@ add your .cnf file for adding <b>mysql</b>as <b>database</b>
 & update the <b>path</b> to the .cnf file
 
 cnf file format :
+<br>
 <code>[client]
 database = DB_NAME
 host = localhost
