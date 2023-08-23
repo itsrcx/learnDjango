@@ -6,13 +6,24 @@
 
 <!--login--> 
 <div class="container py-5">
-    <h2><b>Log In</b></h2>
+        <h2 class="text-center"><b>Log In</b></h2>
     <form method="post">
         {% csrf_token %}
-        {{ login_form|crispy }}
-        <button type="submit">Log In</button>
+        <div class="form-row justify-content-center">
+            <div class="col-6">
+                {{ login_form.username|as_crispy_field }}
+            </div>
+        </div>
+        <div class="form-row justify-content-center">
+            <div class="col-6">
+                {{ login_form.password|as_crispy_field }}
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="btn px-4 btn-primary" type="submit">Log In</button>
+        </div>
     </form>
-    <p class="text-center">Don't have an account? <a href="{% url 'signUp' %}">Create an account</a>.</p>
+    <br><p class="text-center">Don't have an account? <a href="{% url 'signUp' %}">Create an account</a>.</p>
 </div>
 
 {% endblock content %}
