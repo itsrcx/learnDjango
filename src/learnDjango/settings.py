@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
+    "crispy_bootstrap4",
     'blogging',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -133,3 +135,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGIN_REDIRECT_URL = "/"
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4' 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
