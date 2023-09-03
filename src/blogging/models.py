@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 from django.contrib.auth.models import User
 
 # form rendering different
@@ -15,13 +15,16 @@ class Post(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    status = models.IntegerField(choices=status,default = 0)
+    status = models.IntegerField(choices=status,default = 1)
 
     class Meta:
         ordering = ['-created_on'] # - is the sign of descending
 
     def __str__(self):
-        return self.title
+        return self.title + '|' + str(self.author)
+    # goes back to post     
+    def get_absolute_url(self):
+        return reverse('home')
     
 class Comment(models.Model):
     post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='comments')

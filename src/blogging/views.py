@@ -1,19 +1,35 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from .models import Post
-from .forms import CommentForm, NewUserForm
+from .forms import CommentForm, NewUserForm, AddPost
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 
+
 class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by('-created_on')
     template_name = 'blogging/index.html'
-    paginate_by = 3 # pagination 3 post per page
+    paginate_by = 5 # pagination 3 post per page
 
 class PostDetail(generic.DetailView):
     model =Post
     template_name = 'blogging/postDetail.html'
+
+# add post
+class AddPost(generic.CreateView):
+    model = Post
+    form_class = AddPost
+    template_name = 'blogging/addPost.html'
+    # fields = __all__
+    # fields = ('title','content')
+
+# Update post
+class UpdatePost(generic.UpdateView):
+    model = Post
+    template_name = 'blogging/updatePost.html'
+    fields = ('title','content','status')
+
 
 def post_detail(request,slug):
     template_name = 'blogging/postDetail.html'
