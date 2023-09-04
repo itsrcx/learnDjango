@@ -5,6 +5,7 @@ from .forms import CommentForm, NewUserForm, AddPost
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+from django.urls import reverse_lazy
 
 
 class PostList(generic.ListView):
@@ -30,6 +31,12 @@ class UpdatePost(generic.UpdateView):
     template_name = 'blogging/updatePost.html'
     fields = ('title','content','status')
 
+# delete post
+
+class DeletePost(generic.DeleteView):
+    model = Post
+    template_name = 'blogging/deletePost.html'
+    success_url = reverse_lazy('home')
 
 def post_detail(request,slug):
     template_name = 'blogging/postDetail.html'
