@@ -1,11 +1,9 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from .models import Post
-from .forms import CommentForm, NewUserForm, AddPost
-from django.contrib.auth import login, authenticate
-from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
+from .forms import CommentForm, AddPost
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
 
 
 class PostList(generic.ListView):
@@ -18,6 +16,7 @@ class PostDetail(generic.DetailView):
     template_name = 'blogging/postDetail.html'
 
 # add post
+# @login_required(login_url="/accounts/login/")
 class AddPost(generic.CreateView):
     model = Post
     form_class = AddPost
@@ -26,13 +25,14 @@ class AddPost(generic.CreateView):
     # fields = ('title','content')
 
 # Update post
+# @login_required(login_url="/accounts/login/")
 class UpdatePost(generic.UpdateView):
     model = Post
     template_name = 'blogging/updatePost.html'
     fields = ('title','content','status')
 
 # delete post
-
+# @login_required(login_url="/accounts/login/")
 class DeletePost(generic.DeleteView):
     model = Post
     template_name = 'blogging/deletePost.html'
@@ -64,34 +64,34 @@ def post_detail(request,slug):
 
 
 # signup View
-def registerUser(request):
-    if request.method == 'POST':
-        form = NewUserForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            messages.success(request,'Registration Successful.')
-            return redirect('home')
-        messages.error(request,'Unsuccessful registration. Invalid! information.')
-    form = NewUserForm()
-    return render(request, 'blogging/registration/signup.html', context={'register_form':form})
+# def registerUser(request):
+#     if request.method == 'POST':
+#         form = NewUserForm(request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             login(request, user)
+#             messages.success(request,'Registration Successful.')
+#             return redirect('home')
+#         messages.error(request,'Unsuccessful registration. Invalid! information.')
+#     form = NewUserForm()
+#     return render(request, 'blogging/registration/signup.html', context={'register_form':form})
 
 # login view
-def loginUser(request):
-    if request.method =='POST':
-        form = AuthenticationForm(request=request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request,user)
-                messages.info(request, f'You are logged in as  {username}')
-                return redirect('home')
-            else:
-                messages.error(request,'Invalid username or password.')
-        else:
-            messages.error(request, "Enter username or password")
-    form = AuthenticationForm()
-    return render(request=request, template_name='blogging/registration/login.html',context={'login_form':form})
+# def loginUser(request):
+#     if request.method =='POST':
+#         form = AuthenticationForm(request=request, data=request.POST)
+#         if form.is_valid():
+#             username = form.cleaned_data.get('username')
+#             password = form.cleaned_data.get('password')
+#             user = authenticate(username=username, password=password)
+#             if user is not None:
+#                 login(request,user)
+#                 messages.info(request, f'You are logged in as  {username}')
+#                 return redirect('home')
+#             else:
+#                 messages.error(request,'Invalid username or password.')
+#         else:
+#             messages.error(request, "Enter username or password")
+#     form = AuthenticationForm()
+#     return render(request=request, template_name='blogging/registration/login.html',context={'login_form':form})
             
