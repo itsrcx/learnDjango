@@ -29,7 +29,7 @@ class AddPost(generic.CreateView):
 class UpdatePost(generic.UpdateView):
     model = Post
     template_name = 'blogging/updatePost.html'
-    fields = ('title','content','status')
+    fields = ['title','slug','content','status']
 
 # delete post
 # @login_required(login_url="/accounts/login/")

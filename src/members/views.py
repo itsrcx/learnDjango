@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.views import generic
-from django.contrib.auth.forms import UserCreationForm
+from .forms import NewUserForm
 from django.urls import reverse_lazy
 
 class UserRegistration(generic.CreateView):
-    form_class = UserCreationForm
+    form_class = NewUserForm
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('login')
