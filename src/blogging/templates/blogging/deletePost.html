@@ -1,23 +1,28 @@
 {% extends 'base.html' %}
-{% block title %}Delete Blog Post{% endblock title %}
+{% block title %}Delete Post{% endblock title %}
 {% load crispy_forms_tags %}
 
 {% block content %}
 
-<div class="container mt-4">
-    <div class="d-flex justify-content-center">
-        <h3>Delete: {{ post.title }} </h3>
-    </div><br>
-    <div class="d-flex justify-content-center">
-        <form method="POST">
-            {% csrf_token %}
-            {{ form|crispy}}
-            <strong class="text-primary">Are you sure ? You want to delete this post!</strong>
-            <div class="d-flex justify-content-center my-4">
-            <button class="btn btn-danger px-3 justify-content-center">Delete</button> 
-            </div>
-        </form>
+{% if user.is_authenticated %}
+    <div class="container mt-4">
+        <div class="d-flex justify-content-center">
+            <h3>Delete: {{ post.title }} </h3>
+        </div><br>
+        <div class="d-flex justify-content-center">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy}}
+                <strong class="text-primary">Are you sure ? You want to delete this post!</strong>
+                <div class="d-flex justify-content-center my-4">
+                <button type="button" class="btn btn-danger px-3 justify-content-center">Delete</button>
+                <a href="{% url 'home' %}" class="btn btn-primary px-3 mx-3 justify-content-center" role="button" aria-pressed="true">Return</a>  
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+{% else %}
+    <strong class="text-danger my-4">Action Not Allowed!</strong>
+{% endif %}
 
 {% endblock content %}

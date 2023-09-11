@@ -17,7 +17,7 @@ class PostDetail(generic.DetailView):
 
 # add post
 # @login_required(login_url="/accounts/login/")
-class AddPost(generic.CreateView):
+class AddPost(generic.edit.CreateView):
     model = Post
     form_class = AddPost
     template_name = 'blogging/addPost.html'
@@ -26,14 +26,14 @@ class AddPost(generic.CreateView):
 
 # Update post
 # @login_required(login_url="/accounts/login/")
-class UpdatePost(generic.UpdateView):
+class UpdatePost(generic.edit.UpdateView):
     model = Post
     template_name = 'blogging/updatePost.html'
     fields = ['title','slug','content','status']
 
 # delete post
 # @login_required(login_url="/accounts/login/")
-class DeletePost(generic.DeleteView):
+class DeletePost(generic.edit.DeleteView):
     model = Post
     template_name = 'blogging/deletePost.html'
     success_url = reverse_lazy('home')
