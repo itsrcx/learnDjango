@@ -8,4 +8,5 @@ urlpatterns = [
     path('',PostList.as_view(), name = 'home'),
     # path('<slug:slug>/',PostDetail.as_view(), name='postDetail'),
     path('post/<slug:slug>/',post_detail, name='postDetail'),
+    path('category/<str:cats>/', categoryView, name='category'),
 ]

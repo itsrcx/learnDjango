@@ -6,6 +6,10 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 
 
+def categoryView(request, cats):
+    category_post = Post.objects.filter(category=cats)
+    return render(request, 'blogging/category.html',{'cats':cats.title(),'category_post':category_post})
+
 class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by('-created_on')
     template_name = 'blogging/index.html'
