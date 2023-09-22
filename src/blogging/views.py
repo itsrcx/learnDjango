@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def categoryView(request, cats):
-    category_post = Post.objects.filter(category=cats)
+    category_post = Post.objects.filter(category=cats) # not a good way to slugify with filter in template it cause case problem
     return render(request, 'blogging/category.html',{'cats':cats.title(),'category_post':category_post})
 
 class PostList(generic.ListView):

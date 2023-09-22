@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Category{% endblock title %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% if category_post %}
+    <div class="container mt-4">
+        <div class="d-flex justify-content-center">
+            <h3><b>{{ cats }}</b></h3>
+        </div>
+        {% for post in category_post %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}}
+
+                        {% if user.is_authenticated %} 
+                        | <a href="{% url 'updatePost' post.slug %}">Edit</a> 
+                        | <a href="{% url 'deletePost' post.slug %}" class="text-danger">Delete</a>
+                        {% endif %}
+
+                    </p>
+                <p class="card-text">{{post.content|safe|slice:":300" }}...</p>
+                <a href="{% url 'postDetail' post.slug %}" class="btn btn-primary">Read More &rarr;</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="my-4">
+        <strong class="text-danger my-4"><H3>Sorry this page doesn't exist... </H3></strong>
+    </div>
+{% endif %}
+
+{% endblock content %}
