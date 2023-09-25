@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
-from .models import Post
+from .models import Post, Category
 from .forms import CommentForm, AddPost
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
@@ -14,6 +14,7 @@ class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by('-created_on')
     template_name = 'blogging/index.html'
     paginate_by = 5 # pagination 3 post per page
+    extra_context = {'cats_menu': Category.objects.all()}
 
 class PostDetail(generic.DetailView):
     model =Post

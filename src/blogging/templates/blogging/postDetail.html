@@ -6,21 +6,19 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-8 card mb-4  mt-3 left  top">
+    <div class="col-md-8 card shadow mb-4  mt-3 left  top">
       <div class="card-body">
         <h1>{% block title %} {{ post.title }} {% endblock title %}</h1>
-        <p class=" text-muted">{{ post.author }} | <a href="{% url 'category' post.category %}">{{ post.category }}</a> | {{ post.created_on }}
+        <p class=" text-muted">{{ post.author }} | <a class="link-offset-2 link-underline link-underline-opacity-0" href="{% url 'category' post.category %}">{{ post.category }}</a> | {{ post.created_on }}
         
           {% if user.is_authenticated %}
-          | <a href="{% url 'updatePost' post.slug %}">Edit</a> 
-          | <a href="{% url 'deletePost' post.slug %}" class="text-danger">Delete</a></p>
+          | <a class="link-offset-2 link-underline link-underline-opacity-0" href="{% url 'updatePost' post.slug %}">Edit</a> 
+          | <a href="{% url 'deletePost' post.slug %}" class="text-danger link-offset-2 link-underline link-underline-opacity-0">Delete</a></p>
           {% endif %}
 
           <p class="card-text ">{{ object.content|safe }}</p>
       </div>
     </div>
-    {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
-
 
     <!--Comment HTML-->
     <div class="container">
@@ -30,7 +28,6 @@
             <p class="card-text ">{{ post.content | safe }}</p>
           </div>
         </div>
-    
         <div class="col-md-8 card mb-4  mt-3 ">
           <div class="card-body">
             <!-- comments -->
@@ -68,6 +65,7 @@
         </div>
       </div>
     </div>
+    
   </div>
   </div>
 </div>

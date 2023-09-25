@@ -1,22 +1,17 @@
 {% block sidebar %}
-
-<style>
-        .card{
-            box-shadow: 0 16px 48px #E3E7EB;
-        }
-
-</style>
-
 <!-- Sidebar Widgets Column -->
-<div class="col-md-4 float-right ">
-<div class="card my-4">
-        <h5 class="card-header">About Us</h5>
-    <div class="card-body">
-        <p class="card-text"> This awesome blog is made on the top of our Favourite full stack Framework 'Django'</p>
-        <a href="https://docs.djangoproject.com/en/4.2/"
-           class="btn btn-danger">Django Docs</a>
-    </div>
-</div>
-</div>
-
-{% endblock sidebar %}
+{% if cats_menu %}
+  <div class="col-md-4 my-5 float-right ">
+      <div class="card" style="width: 16rem;">
+          <div class="card-header text-center">
+            Categories
+          </div>
+          <ul class="list-group list-group-flush">
+          {% for item in cats_menu %}
+            <li class="list-group-item"><a class="link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{% url 'category' item %}">{{ item }}</a></li>
+          {% endfor %}
+          </ul>
+        </div>
+  </div>
+{% endif %}
+{% endblock %}
