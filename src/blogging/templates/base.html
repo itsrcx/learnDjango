@@ -21,90 +21,94 @@
     <style>
         body {
             font-family: "Roboto", sans-serif;
-            font-size: 16px;
+            font-size: 15px;
             background-color: #fdfdfd;
             }
-        .navbar {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .navbar-nav .nav-link {
-            display: flex;
-            align-items: center;
-        }
-        .navbar-nav .nav-link i {
-            margin-right: 5px;
-        }
         .main-content {
             padding: 20px;
+        }
+        .hover-zoom:hover {
+        transition: transform 0.2s; /* Set the duration of the zoom effect */
+        transform: scale(1.03); /* Zoom in a bit on hover */
+        }
+
+        /* Reset the zoom effect on mouse out (optional) */
+        .hover-zoom {
+            transition: transform 0.2s;
+            transform: scale(1); /* Reset to normal size */
         }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand font-weight-bold" href="{% url 'home' %}">Blog App</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-home"></i> Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-cog"></i> Settings
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-envelope"></i> Contact
-                    </a>
-                </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'addPost' %}">
-                        <i class="fas fa-edit"></i> Create Post
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-user"></i> Profile
-                    </a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">
-                        <i class="fas fa-sign-in-alt"></i> Login
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signUp' %}">
-                        <i class="fas fa-user-plus"></i> Sign Up
-                    </a>
-                </li>
-                {% endif %}
-            </ul>
+<div class="d-flex flex-column min-vh-100">
+    <nav class="navbar sticky-top shadow navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">Blog App</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
+                            <i class="fas fa-cog"></i> Settings
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
+                            <i class="fas fa-envelope"></i> Contact
+                        </a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link link-body-emphasis link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{% url 'addPost' %}">
+                            <i class="fas fa-edit"></i> Create Post
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-user"></i> Profile
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signUp' %}">
+                            <i class="fas fa-user-plus"></i> Sign Up
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
-<div class="container">
-    {% block content %}
-    <!-- content is going to be overriden when inherited. -->
-    {% endblock content %}
-</div>
-<footer class="bg-dark text-light text-center py-3">
-    <div class="container">
-        <p>&copy; 2023 DEV. All Rights Reserved.</p>
-    </div>
-</footer>
+    </nav>
 
+    <div class="container-fluid flex-grow-1">
+        {% block content %}
+        <!-- content is going to be overriden when inherited. -->
+        {% endblock content %}
+    </div>
+
+    <footer class="footer bg-dark text-light text-center py-3">
+        <div class="container">
+            <p>&copy; 2023 /raman/ All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</div>
 </body>
 </html>

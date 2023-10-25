@@ -7,25 +7,34 @@
 {% load crispy_forms_tags %}
 
 <!--login--> 
-<div class="container py-5">
-        <h2 class="text-center"><b>Log In</b></h2>
-    <form method="post">
-        {% csrf_token %}
-        <div class="form-row justify-content-center">
-            <div class="col-6">
-                {{ form.username|as_crispy_field }}
+<div class="container-fluid d-flex justify-content-center align-items-center" style="height: 60vh;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-12 p-3 mb-5 bg-body-tertiary rounded">
+                <h2 class="text-center"><b>Welcome Back!</b></h2>
+                <form method="post">
+                    {% csrf_token %}
+                            <div class="form-group">
+                                {{ form.username|as_crispy_field }}
+                                {{ form.password|as_crispy_field }}
+                            </div>
+                            <div class="text-center my-2">
+                                <button class="btn btn-primary" type="submit">Log In</button>
+                            </div>
+                </form>
+                {% if form.errors %}
+                <div class="text-danger">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <div class="text-center my-2">
+                    <p>Don't have an account? <a href="{% url 'signUp' %}">Create an account</a></p>
+                </div>
             </div>
         </div>
-        <div class="form-row justify-content-center">
-            <div class="col-6">
-                {{ form.password|as_crispy_field }}
-            </div>
-        </div>
-        <div class="text-center">
-            <button class="btn px-4 btn-primary" type="submit">Log In</button>
-        </div>
-    </form>
-    <br><p class="text-center">Don't have an account? <a href="{% url 'signUp' %}">Create an account</a></p>
+    </div>
 </div>
 
 {% endblock content %}
