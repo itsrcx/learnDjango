@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'members',
     'crispy_forms',
-    "crispy_bootstrap4",
+    "crispy_bootstrap5",
     'blogging',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -139,5 +139,5 @@ LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4' 
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = 'bootstrap5' 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
