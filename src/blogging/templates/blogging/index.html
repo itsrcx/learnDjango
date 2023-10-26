@@ -19,7 +19,7 @@
 
                         </p>
                     <p class="card-text">{{post.content|safe|slice:":300" }}...</p>
-                    <a href="{% url 'postDetail' post.slug %}" class="btn btn-primary">Read More &rarr;</a>
+                    <a href="{% url 'postDetail' post.slug %}" class="btn btn-sm btn-primary">Read More &rarr;</a>
                 </div>
             </div>
             {% endfor %}
