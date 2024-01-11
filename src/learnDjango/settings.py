@@ -77,10 +77,24 @@ WSGI_APPLICATION = 'learnDjango.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
+# >>>>>>>>>>>>>>>>>>>>> Default DB >>>>>>>>>>>>>>>>>>>>
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# >>>>>>>>>>>>>>>>>>>>>>> MySql >>>>>>>>>>>>>>>>>>
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'blogdb',
+        'USER': 'joyboy',
+        'PASSWORD': 'password',
+        'HOST': 'mysqlDB',
+        'PORT': '3306',
     }
 }
 
