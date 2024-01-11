@@ -93,7 +93,7 @@ DATABASES = {
         'NAME': 'blogdb',
         'USER': 'joyboy',
         'PASSWORD': 'password',
-        'HOST': 'mysqlDB',
+        'HOST': 'mysqldb',
         'PORT': '3306',
     }
 }

@@ -1,10 +1,11 @@
-version: '0.1'
+version: '3'
 
 services:
-  mysqlDB:
+  mysqldb:
     image: mysql:latest
+    container_name: blog_db
     environment:
-      MYSQL_ROOT_PASSWORD: root@password
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: blogdb
       MYSQL_USER: joyboy
       MYSQL_PASSWORD: password
@@ -14,17 +15,19 @@ services:
       - blog_data:/var/lib/mysql
 
   web:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./src:/blogApp
+      - ./src:/app  # Adjust this path based on your project structure
     ports:
-      - "8000:8000"
+      - "8001:8000"
     depends_on:
-      - mysqlDB
-
+      - mysqldb
+    links:
+      - mysqldb
+    container_name: blog_web
 
 volumes:
   blog_data:
