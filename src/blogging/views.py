@@ -98,4 +98,3 @@ def post_detail(request,slug):
 #             messages.error(request, "Enter username or password")
 #     form = AuthenticationForm()
 #     return render(request=request, template_name='blogging/registration/login.html',context={'login_form':form})
-            

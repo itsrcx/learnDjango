@@ -31,6 +31,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'drf_yasg',
+    'dj_rest_auth.registration',
+    'dj_rest_auth',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'corsheaders', # for the multi-frontend app 
     'members',
     'crispy_forms',
     "crispy_bootstrap4",
@@ -41,13 +47,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -79,24 +92,24 @@ WSGI_APPLICATION = 'learnDjango.wsgi.application'
 
 
 # >>>>>>>>>>>>>>>>>>>>> Default DB >>>>>>>>>>>>>>>>>>>>
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-# >>>>>>>>>>>>>>>>>>>>>>> MySql >>>>>>>>>>>>>>>>>>
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blogdb',
-        'USER': 'joyboy',
-        'PASSWORD': 'password',
-        'HOST': 'mysqldb',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# >>>>>>>>>>>>>>>>>>>>>>> MySql >>>>>>>>>>>>>>>>>>
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'blogdb',
+#         'USER': 'joyboy',
+#         'PASSWORD': 'password',
+#         'HOST': 'mysqlDB',
+#         'PORT': '3306',
+#     }
+# }
 
 
 # Password validation
@@ -129,6 +142,48 @@ USE_I18N = True
 
 USE_TZ = True
 
+# google authentication
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
+
+
+AUTHENTICATION_CLASSES = (
+ 
+    'allauth.account.auth_backends.AuthenticationBackend',
+ 
+)
+
+# Additional configuration settings
+
+SOCIALACCOUNT_QUERY_EMAIL = True
+ACCOUNT_LOGOUT_ON_GET= True
+SOCIAL_ACCOUNT_LOGIN_ON_GET = True
+ACCOUNT_UNIQUE_EMAIL = True
+# ACCOUNT_EMAIL_REQUIRED = True
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': ['profile', 'email'],
+        'AUTH_PARAMS': {
+            'access_type': 'offline',
+        },
+        'APP': {
+            'client_id': '',
+            'secret': '',
+            'key': ''
+        }
+    }
+}
+
+# Password reset
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+SITE_ID = 1
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -155,3 +210,9 @@ LOGOUT_REDIRECT_URL = "home"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4' 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
