@@ -1,0 +1,29 @@
+# Name of the workflow
+name: Deploy to Server
+
+# Trigger the workflow on push to the main branch
+on:
+  push:
+    branches:
+      - main
+
+# Define the jobs to run
+jobs:
+  deploy:
+    # Use the latest Ubuntu runner
+    runs-on: ubuntu-latest
+
+    steps:
+    # Check out the code from the repository
+    - name: Check out the code
+      uses: actions/checkout@v2
+
+    # Set up SSH agent to access the server
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    # Run the deployment script on the server
+    - name: Deploy to server
+      run: ssh ubuntu@18.212.74.170 'bash -s' < /var/www/deploy.sh
