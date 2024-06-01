@@ -5,7 +5,7 @@ name: Deploy to Server
 on:
   push:
     branches:
-      - main
+      - rcx
 
 # Define the jobs to run
 jobs:
