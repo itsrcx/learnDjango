@@ -1,13 +1,6 @@
 ```md
 # learnDjango 🌐
 
-![Python](https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge)
-![Django](https://img.shields.io/badge/Django-4.x-green?style=for-the-badge)
-![MySQL](https://img.shields.io/badge/Database-MySQL-blue?style=for-the-badge)
-![Security](https://img.shields.io/badge/Security-CNF%20File-important?style=for-the-badge)
-
----
-
 ## 🛠️ **Project Setup**
 
 This guide will walk you through configuring MySQL as your database using a secure `.cnf` file for sensitive credentials.
@@ -53,9 +46,10 @@ DATABASES = {
 ## 📸 **Screenshots**
 
 <div align="center">
-  <img src="./project_images/1.png" alt="Setup Screenshot" width="300" />
-  <img src="./project_images/2.png" alt="CNF File Screenshot" width="300" />
-  <img src="./project_images/3.png" alt="CNF File Screenshot" width="300" />
+  <img src="./project_images/1.png" alt="image" width="300" />
+  <img src="./project_images/2.png" alt="image" width="300" />
+  <img src="./project_images/3.png" alt="image" width="300" />
+  <img src="./project_images/4.png" alt="image" width="300" />
 </div>
 
 ---
