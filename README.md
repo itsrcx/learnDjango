@@ -1,4 +1,3 @@
-```md
 # learnDjango 🌐
 
 ## 🛠️ **Project Setup**
